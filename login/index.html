@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Logistica Balderrama | Iniciar Sesión</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="" name="description" />
+    <meta content="themes-lab" name="author" />
+    <link rel="shortcut icon" href="../assets/global/images/favicon.png">
+    <link href="../assets/global/css/style.css" rel="stylesheet">
+    <link href="../assets/global/css/ui.css" rel="stylesheet">
+    <link href="../assets/global/plugins/bootstrap-loading/lada.min.css" rel="stylesheet">
+</head>
+
+<body class="account separate-inputs" data-page="login">
+    <!-- BEGIN LOGIN BOX -->
+    <div class="container" id="login-block">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-md-offset-4">
+                <div class="account-wall">
+                    <i class="user-img icons-faces-users-03"></i>
+                    <form class="form-signin" action="dashboard.html" role="form">
+                        <div class="append-icon">
+                            <input type="text" name="icor" id="icor" class="form-control form-white username" placeholder="Correo" required>
+                            <i class="icon-user"></i>
+                        </div>
+                        <div class="append-icon m-b-20">
+                            <input type="password" name="ipsw" id="ipsw" class="form-control form-white password" placeholder="Contraseña" required>
+                            <i class="icon-lock"></i>
+                        </div>
+                        <button type="submit" id="submit-form" class="btn btn-lg btn-danger btn-block ladda-button" data-style="expand-left">Entrar!</button>
+                        <button type="button" id="registeru" class="btn-fb btn btn-lg btn-block btn-primary">Registrate</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <p class="account-copyright">
+            <span>Copyright © 2017 </span><span>Logistica Balderrama</span>. <span>Todos los derechos reservados.</span>
+        </p>
+
+        <div class="modal fade" id="modalNew" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
+                        <h4 class="modal-title"><strong>Registrar</strong> Cliente</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" id="frmNew" class="form-horizontal form-validation" novalidate="novalidate">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Nombre de contacto</label>
+                                <div class="col-sm-8 prepend-icon">
+                                    <input type="text" name="ncontacto" id="ncontacto" class="form-control" placeholder="Personal a dirigirse" required aria-required="true">
+                                    <i class="icon-user"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Nombre de empresa</label>
+                                <div class="col-sm-8 prepend-icon">
+                                    <input type="text" name="nempresa" id="nempresa" class="form-control" placeholder="Nombre del negocio" required aria-required="true">
+                                    <i class="icon icons-education-science-18"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Direccion</label>
+                                <div class="col-sm-10 prepend-icon">
+                                    <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Ubicacion" required aria-required="true">
+                                    <i class="icon-directions"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Telefono</label>
+                                <div class="col-sm-10 prepend-icon">
+                                    <input type="text" name="telefono" id="telefono" class="form-control" placeholder="Numero fijo" required aria-required="true">
+                                    <i class="icon-call-in"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Numero CTPAT</label>
+                                <div class="col-sm-9 prepend-icon">
+                                    <input type="text" name="nctpat" id="nctpat" class="form-control" placeholder="Si no cuenta con el, pase al siguiente campo">
+                                    <i class="icon icons-documents-bookmarks-07"></i>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Correo</label>
+                                <div class="col-sm-9 prepend-icon">
+                                    <input type="text" name="correo" id="correo" class="form-control" placeholder="No es un dato publico" required aria-required="true">
+                                    <i class="icon-envelope"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Contraseña</label>
+                                <div class="col-sm-9 prepend-icon">
+                                    <input type="password" name="psw" id="psw" class="form-control" placeholder="Mínimo 6 caracteres..." minlength="6" required aria-required="true">
+                                    <i class="icon-key"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Repetir Contraseña</label>
+                                <div class="col-sm-9 prepend-icon">
+                                    <input type="password" name="rpsw" id="rpsw" class="form-control" placeholder="Mínimo 6 caracteres..." minlength="6" required aria-required="true">
+                                    <i class="icon-key"></i>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer bg-blue">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" id="saveNew" class="btn btn-dark">Guardar</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <script src="../assets/global/plugins/jquery/jquery-1.11.1.min.js"></script>
+    <script src="../assets/global/plugins/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../assets/global/plugins/gsap/main-gsap.min.js"></script>
+    <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/global/plugins/backstretch/backstretch.min.js"></script>
+    <script src="../assets/global/plugins/bootstrap-loading/lada.min.js"></script>
+    <script src="../assets/global/plugins/noty/jquery.noty.packaged.min.js"></script>
+    <script src="../assets/global/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="../assets/global/plugins/jquery-validation/additional-methods.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

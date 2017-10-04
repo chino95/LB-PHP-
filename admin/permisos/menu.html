@@ -1,0 +1,14 @@
+{{#sections}}
+<div class="menu-title">
+    {{title}}
+</div>
+{{#menus}}
+<li class="nav-parent">
+    <a href="#"><i class="{{icon}}"></i><span>{{title}}</span> <span class="fa arrow"></span></a>
+    <ul class="children collapse">
+        {{#submenus}}
+        <li><a href="{{href}}"> {{title}}</a></li>
+        {{/submenus}}
+    </ul>
+</li>
+{{/menus}} {{/sections}}

@@ -1,0 +1,7 @@
+{
+    "icons": [{
+        "icon": "octicon octicon-device-desktop",
+        "href": "../dashboard/",
+        "tooltip": "Panel General"
+    }]
+}

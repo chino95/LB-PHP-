@@ -1,0 +1,21 @@
+{
+    "sections": [{
+        "title": "Menú Principal",
+        "menus": [{
+            "title": "Servicios",
+            "icon": "icon-bell",
+            "submenus": [{
+                    "title": "Solicitudes Servicios",
+                    "href": "../sservicio/"
+                }, {
+                    "title": "Actualizar Estatus",
+                    "href": "../blank-page/"
+                },
+                {
+                    "title": "Historial Servicios",
+                    "href": "../blank-page/"
+                }
+            ]
+        }]
+    }]
+}

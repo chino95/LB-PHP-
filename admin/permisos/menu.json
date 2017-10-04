@@ -1,0 +1,54 @@
+{
+    "sections": [{
+        "title": "Menú Principal",
+        "menus": [{
+                "title": "Usuarios",
+                "icon": "icon-users",
+                "submenus": [{
+                    "title": "Control Usuarios",
+                    "href": "../control-usuarios/"
+                }]
+            },
+            {
+                "title": "Clientes",
+                "icon": "icon icons-faces-users-04",
+                "submenus": [{
+                    "title": "Control Clientes",
+                    "href": "../control-clientes/"
+                }]
+            },
+            {
+                "title": "Empleados",
+                "icon": "icon icons-faces-users-04",
+                "submenus": [{
+                    "title": "Control Empleados",
+                    "href": "../control-empleados/"
+                }]
+            },
+            {
+                "title": "Vehiculos",
+                "icon": "icon icons-alerts-12",
+                "submenus": [{
+                    "title": "Control Vehiculos",
+                    "href": "../control-vehiculos/"
+                }]
+            },
+            {
+                "title": "Servicios",
+                "icon": "icon-bell",
+                "submenus": [{
+                        "title": "Solicitudes Servicios",
+                        "href": "../blank-page/"
+                    }, {
+                        "title": "Actualizar estatus",
+                        "href": "../blank-page/"
+                    },
+                    {
+                        "title": "Historial Servicios",
+                        "href": "../blank-page/"
+                    }
+                ]
+            }
+        ]
+    }]
+}
