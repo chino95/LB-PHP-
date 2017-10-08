@@ -1,10 +1,10 @@
 $(document).ready(function() {
-    Template.setTitle({ title: "Captura", "subtitle": "Vehiculos" });
-    getUsuarios();
+    Template.setTitle({ title: "Captura", "subtitle": "Tipos de Servicios" });
+    getTServicios();
 });
 $("#frm").validate({
     submitHandler: function(form) {
-        newUsuarios();
+        newTipoServicio();
     }
 });
 $("#frmmod").validate({
@@ -19,8 +19,7 @@ function MostrarModal(id) {
     $.post('main.php', { id: id, action: "getData" },
         function(e) {
             if (e.data == true) {
-                $('#mnombre').val(e.r[0]);
-                $('#mcorreo').val(e.r[1]);
+                $('#mnservicio').val(e.r[0]);
                 $('#modalUpdate').modal();
             } else {
                 showNotification('Error!', e.r, 'danger');
@@ -30,7 +29,7 @@ function MostrarModal(id) {
     return false;
 }
 
-function getUsuarios() {
+function getTServicios() {
     $.post('main.php', { action: "get" },
         function(e) {
             if (e.data == true) {
@@ -39,23 +38,17 @@ function getUsuarios() {
                 showNotification('Error!', e.r, 'danger');
             }
         });
-    return false;
 }
 
-function newUsuarios() {
-    var dtcu = {
-        cor: $("#correo").val(),
-        psw: $("#psw").val()
+function newTipoServicio() {
+    var dt = {
+        nom: $("#nservicio").val()
     };
-    var dtus = {
-        id: 0,
-        nom: $("#nombre").val()
-    };
-    $.post('main.php', { dtcu: dtcu, dtus: dtus, action: "new" },
+    $.post('main.php', { dt: dt, action: "new" },
         function(e) {
             if (e.data == true) {
-                showNotification('Aviso!', 'Usuario Registrado', 'success');
-                getUsuarios();
+                showNotification('Aviso!', 'Servicio Registrado', 'success');
+                getTServicios();
 
             } else {
                 showNotification('Error!', e.r, 'danger');
@@ -66,21 +59,15 @@ function newUsuarios() {
 }
 
 function updatUsuario() {
-    var dataus = {
+    var dt = {
         id: idm,
-        nom: $("#mnombre").val()
-
+        nom: $("#mnservicio").val()
     };
-    var datacu = {
-        idcu: 0,
-        cor: $("#mcorreo").val(),
-        psw: $("#mpassword").val()
-    };
-    $.post('main.php', { dtus: dataus, dtcu: datacu, action: "update" },
+    $.post('main.php', { dt: dt, action: "update" },
         function(e) {
             if (e.data == true) {
-                showNotification('Aviso!', 'Usuario Modificado', 'success');
-                getUsuarios();
+                showNotification('Aviso!', 'Servicio Modificado', 'success');
+                getTServicios();
 
             } else {
                 showNotification('Error!', e.r, 'danger');

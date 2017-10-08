@@ -5,10 +5,10 @@
             "title": "Servicios",
             "icon": "icon-bell",
             "submenus": [{
-                    "title": "Solicitudes Servicios",
+                    "title": "Solicitar Servicios",
                     "href": "../sservicio/"
                 }, {
-                    "title": "Actualizar Estatus",
+                    "title": "Servicios en Proceso",
                     "href": "../blank-page/"
                 },
                 {

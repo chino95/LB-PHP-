@@ -37,8 +37,11 @@
                 "title": "Servicios",
                 "icon": "icon-bell",
                 "submenus": [{
+                        "title": "Tipos de Servicios",
+                        "href": "../tipo-servicio/"
+                    }, {
                         "title": "Solicitudes Servicios",
-                        "href": "../blank-page/"
+                        "href": "../mservicio/"
                     }, {
                         "title": "Actualizar estatus",
                         "href": "../blank-page/"

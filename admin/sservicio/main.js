@@ -1,5 +1,6 @@
 $(document).ready(function() {
     Template.setTitle({ title: "Solicitar", "subtitle": "Servicio" });
+    getTServicio();
 });
 $("#frm").validate({
     submitHandler: function(form) {
@@ -16,6 +17,22 @@ function clean() {
     $("#fecha").val('');
     $("#hora").val('');
     $("#comenta").val('');
+}
+
+function getTServicio() {
+    $.post('main.php', { action: "getTServicio" },
+        function(e) {
+            if (e.data == true) {
+                console.log(e.r)
+                for (var i = e.r.length - 1; i >= 0; i--) {
+                    console.log(i)
+                    $('#tipos').html('<option>' + e.r[1][i] + '</option>');
+                }
+            } else {
+                showNotification('Error!', e.r, 'danger');
+            }
+        });
+    return false;
 }
 
 var fora;
