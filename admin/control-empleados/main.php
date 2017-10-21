@@ -1,14 +1,14 @@
 <?php
 if(isset($_POST['action'])){
-	include '../../cnf/usuarios.php';
+	include '../../classes/empleados.php';
 	header('Content-Type: application/json');
-	$obj =  new Usuarios();
+	$obj =  new Empleados();
 	switch ($_POST['action']) {
 		case 'new':
 		echo $obj->newUsuario($_POST['dtcu'],$_POST['dtus']);
 		break;
         case 'get':
-		echo $obj->getUsuario();
+		echo $obj->getEmpleados();
 		break;
 		case 'getData':
 		echo $obj->getModalUsuarios($_POST['id']);

@@ -23,11 +23,9 @@ function getTServicio() {
     $.post('main.php', { action: "getTServicio" },
         function(e) {
             if (e.data == true) {
-                console.log(e.r)
-                for (var i = e.r.length - 1; i >= 0; i--) {
-                    console.log(i)
-                    $('#tipos').html('<option>' + e.r[1][i] + '</option>');
-                }
+
+                $('#tipos').html(e.l);
+
             } else {
                 showNotification('Error!', e.r, 'danger');
             }
@@ -45,16 +43,19 @@ function newSolicitud() {
     }
     var dt = {
         idcliente: 0,
-        // tipos: $("#tipos").val(),
+        tipos: $("select[name='CCards'] option:selected").index(),
         foraneo: fora,
         tipoe: $("#tipoe").val(),
         origen: $("#origen").val(),
         destino: $("#destino").val(),
         peso: $("#peso").val(),
+        pesom: $("#pesom").val(),
         bultos: $("#bultos").val(),
+        bultosm: $("#bultosm").val(),
         fecha: $("#fecha").val(),
         hora: $("#hora").val(),
-        comentario: $("#comenta").val()
+        comentario: $("#comenta").val(),
+        status: 'solicitado'
     };
     $.post('main.php', { dt: dt, action: "new" },
         function(e) {

@@ -2,21 +2,18 @@ $(document).ready(function() {
     Template.setTitle({ title: "Captura", "subtitle": "Usuarios" });
     getUsuarios();
 });
-$("#frm").validate({
-    submitHandler: function(form) {
-        newUsuarios();
-    }
-});
 $("#frmmod").validate({
     submitHandler: function(form) {
         updatUsuario();
     }
 });
-var idm;
+var idcl;
+var idcu;
 
-function MostrarModal(id) {
-    idm = id;
-    $.post('main.php', { id: id, action: "getData" },
+function MostrarModal(idCliente, idCuenta) {
+    idcl = idCliente;
+    idcu = idCuenta;
+    $.post('main.php', { id: idcl, action: "getData" },
         function(e) {
             if (e.data == true) {
                 $('#ncontacto').val(e.r[0]);
@@ -47,17 +44,24 @@ function getUsuarios() {
 }
 
 function updatUsuario() {
-    var dataus = {
-        id: idm,
-        nom: $("#mnombre").val()
-
+    var ctpatc = $('#nctpat').val();
+    if (ctpatc == '' || ctpatc == '0') {
+        ctpatc = 0;
+    }
+    var dtcl = {
+        idcl: idcl,
+        contacto: $("#ncontacto").val(),
+        empresa: $("#nempresa").val(),
+        dire: $("#ndireccion").val(),
+        tel: $('#ntelefono').val(),
+        ctpat: ctpatc
     };
-    var datacu = {
-        idcu: 0,
-        cor: $("#mcorreo").val(),
-        psw: $("#mpassword").val()
+    var dtcu = {
+        id: idcu,
+        cor: $("#ncorreo").val(),
+        psw: $("#npsw").val()
     };
-    $.post('main.php', { dtus: dataus, dtcu: datacu, action: "update" },
+    $.post('main.php', { dtcl: dtcl, dtcu: dtcu, action: "update" },
         function(e) {
             if (e.data == true) {
                 showNotification('Aviso!', 'Usuario Modificado', 'success');

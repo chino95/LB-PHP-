@@ -30,6 +30,7 @@ class TServicio extends ConnectionManager{
 		$retval=array('data'=>false,
 			'error'=>false,
 			'r'=>array(),
+			'l'=>"<option>Seleccione una opcion</option>",
 			'c'=>array(array('title'=>'ID'),array('title'=>'Nombre del Servicio'),array('title'=>'Accion')));
 		$cnx = $this-> connectMysql();
 		try{
@@ -40,29 +41,7 @@ class TServicio extends ConnectionManager{
 				$retval['data']=true;
 				array_push($retval['r'], array($row['ID_TipoServicio'], $row['Tipo'],
 				'<button class="btn btn-embossed btn-primary m-r-20" onclick="MostrarModal('.$row['ID_TipoServicio'].')">Modificar</button>'));
-			}
-		}
-		catch(PDOException $e){
-			$retval['error']=true;
-			$retval['r']=$e->getMessage();
-		}
-		return json_encode($retval);
-	}
-
-	function getTServiciosM(){
-		$retval=array('data'=>false,
-			'error'=>false,
-			'r'=>array(),
-			'c'=>array(array('title'=>'ID'),array('title'=>'Nombre del Servicio'),array('title'=>'Accion')));
-		$cnx = $this-> connectMysql();
-		try{
-			$sth = $cnx->prepare("SELECT ID_TipoServicio, Tipo FROM tservicio");
-			$sth->execute();
-
-			while($row = $sth->fetch(PDO::FETCH_ASSOC)){
-				$retval['data']=true;
-				array_push($retval['r'], array($row['ID_TipoServicio'], $row['Tipo'],
-				'<button class="btn btn-embossed btn-primary m-r-20" onclick="MostrarModal('.$row['ID_TipoServicio'].')">Modificar</button>'));
+				$retval['l'].= "<option>".($row['Tipo'])."</option>";	
 			}
 		}
 		catch(PDOException $e){

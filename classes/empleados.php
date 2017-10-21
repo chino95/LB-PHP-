@@ -1,8 +1,7 @@
 <?php
-require_once('pdocnx.php');
+require_once('../../cnf/pdocnx.php');
 
-class Clientes extends ConnectionManager{
-
+class Empleados extends ConnectionManager{
 
 	public function newCliente($dtcl, $dtcu){
 		$retval=array('data'=>false,
@@ -39,23 +38,23 @@ class Clientes extends ConnectionManager{
 		return json_encode($retval);
 	}
 
-	function getClientes(){
+	function getEmpleados(){
 		$retval=array('data'=>false,
 			'error'=>false,
 			'r'=>array(),
-			'c'=>array(array('title'=>'ID'),array('title'=>'Nombre de contacto'),array('title'=>'Nombre de empresa'),array('title'=>'Direccion'),array('title'=>'Telefono'),array('title'=>'CTPAT'),array('title'=>'Accion')));
+			'c'=>array(array('title'=>'ID'),array('title'=>'Nombre'),array('title'=>'Direccion'),array('title'=>'Telefono'),array('title'=>'Licencia'),array('title'=>'Tipo Licencia'),array('title'=>'Visa'),array('title'=>'IFE'),array('title'=>'Accion')));
 		$cnx = $this-> connectMysql();
 		try{
-			$sth = $cnx->prepare("SELECT e.ID_Cliente, e.ID_Cuenta, e.Nombre_contacto, e.Nombre_empresa, e.Direccion, e.Telefono, e.Num_Ctpat FROM clientes e
-			INNER JOIN cuentas c ON e.ID_Cuenta = c.ID_Cuenta");
+			$sth = $cnx->prepare("SELECT e.ID_Empleados, e.Nombre, e.Appat, e.Direccion, e.Telefono, e.Num_Licencia, e.Tipo_Licencia, e.Num_Visa, e.IFE FROM empleados e");
 			$sth->execute();
 
 			while($row = $sth->fetch(PDO::FETCH_ASSOC)){
 				$retval['data']=true;
-				$status = $row['Num_Ctpat'] != 0 ?  $row['Num_Ctpat'] : '<span class="label label-sm label-danger"> No cuenta con CTPAT </span>';
-				
-				array_push($retval['r'], array($row['ID_Cliente'], $row['Nombre_contacto'], $row['Nombre_empresa'], $row['Direccion'], $row['Telefono'], $status,
-				'<button class="btn btn-embossed btn-primary m-r-20" onclick="MostrarModal('.$row['ID_Cliente'].','.$row['ID_Cuenta'].')">Modificar</button>'));
+				$licencia = $row['Num_Licencia'] != 0 ?  $row['Num_Licencia'] : '<span class="label label-sm label-danger"> No cuenta con Licencia </span>';
+                $visa = $row['Num_Visa'] != 0 ?  $row['Num_Visa'] : '<span class="label label-sm label-danger"> No cuenta con Visa </span>';
+                
+				array_push($retval['r'], array($row['ID_Empleados'], $row['Nombre'].' '.$row['Appat'], $row['Direccion'], $row['Telefono'], $licencia, $row['Tipo_Licencia'], $visa, $row['IFE'],
+				'<button class="btn btn-embossed btn-primary m-r-20" onclick="MostrarModal('.$row['ID_Empleados'].')">Modificar</button>'));
 			}
 		}
 		catch(PDOException $e){

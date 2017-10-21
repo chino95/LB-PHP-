@@ -11,7 +11,7 @@ if(isset($_POST['action'])){
 		echo $obj->getModalCliente($_POST['id']);
 		break;
         case 'update':
-		echo $obj->updateUsuario($_POST['dtus'],$_POST['dtcu']);
+		echo $obj->updateCliente($_POST['dtcl'],$_POST['dtcu']);
 		break;
 		default:
 		echo "Opción Inválida";

@@ -8,9 +8,14 @@ if(isset($_POST['action'])){
 		echo $obj->getMServicio();
 		break;
 		case 'getData':
-		echo $obj->getModalCliente($_POST['id']);
+		echo $obj->getModalMServicio($_POST['id']);
 		break;
-       
+		case 'getEmpVeh':
+		echo $obj->getEmpVeh();
+		break;
+		case 'aceptarsoli':
+		echo $obj->aceptarsoli($_POST['dt']);
+		break;
 		default:
 		echo "Opción Inválida";
 		break;

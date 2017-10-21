@@ -13,8 +13,8 @@ class Sservicio extends ConnectionManager{
         session_start();
         $dt['idcliente']=$_SESSION['data']['idcuenta'];
 		try{
-			$query="INSERT INTO sservicio (ID_Cliente, Foraneo, Tipo_Carga, Origen, Destino, Fecha, Hora, Peso, Bultos, Comentarios) 
-			VALUES (:idcliente, :foraneo, :tipoe, :origen, :destino, :fecha, :hora, :peso, :bultos, :comentario)";
+			$query="INSERT INTO sservicio (ID_Cliente, ID_TipoServicio, Foraneo, Tipo_Carga, Origen, Destino, Fecha, Hora, Peso, PesoM, Bultos, BultosM, Comentarios, status) 
+			VALUES (:idcliente, :tipos, :foraneo, :tipoe, :origen, :destino, :fecha, :hora, :peso, :pesom, :bultos, :bultosm, :comentario, :status)";
 			$sth = $cnx->prepare($query);
 			$sth->execute($dt);
 			if($retval['r']=$sth->rowCount()){

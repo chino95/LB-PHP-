@@ -1,10 +1,10 @@
 $(document).ready(function() {
-    Template.setTitle({ title: "Captura", "subtitle": "Empleados" });
-    getEmpleados();
+    Template.setTitle({ title: "Actualizar", "subtitle": "Status" });
+    getUsuarios();
 });
 $("#frm").validate({
     submitHandler: function(form) {
-        newEmpleado();
+        newUsuarios();
     }
 });
 $("#frmmod").validate({
@@ -14,24 +14,18 @@ $("#frmmod").validate({
 });
 var idm;
 
-function getEmpleados() {
-    $.post('main.php', { action: "get" },
-        function(e) {
-            if (e.data == true) {
-                initTable(e.r, e.c, $("#tbl"));
-            } else {
-                showNotification('Error!', e.r, 'danger');
-            }
-        });
-}
-
 function MostrarModal(id) {
     idm = id;
     $.post('main.php', { id: id, action: "getData" },
         function(e) {
             if (e.data == true) {
-                $('#mnombre').val(e.r[0]);
-                $('#mcorreo').val(e.r[1]);
+                $('#ncontacto').val(e.r[0]);
+                $('#nempresa').val(e.r[1]);
+                $('#ndireccion').val(e.r[2]);
+                $('#ntelefono').val(e.r[3]);
+                $('#nctpat').val(e.r[4]);
+                $('#ncorreo').val(e.r[5]);
+
                 $('#modalUpdate').modal();
             } else {
                 showNotification('Error!', e.r, 'danger');
@@ -41,30 +35,15 @@ function MostrarModal(id) {
     return false;
 }
 
-function newEmpleado() {
-    var dt = {
-        nom: $("#nombre").val(),
-        appat: $("#appat").val(),
-        dire: $("#dire").val(),
-        tel: $("#telefono").val(),
-        lice: $("#lice").val(),
-        numlic: $("#numlic").val(),
-        tipolic: $('#tipolic'),
-        visa: $('#visa'),
-        ife: $('#ife')
-    };
-    $.post('main.php', { dt: dt, action: "new" },
+function getUsuarios() {
+    $.post('main.php', { action: "get" },
         function(e) {
             if (e.data == true) {
-                showNotification('Aviso!', 'Usuario Registrado', 'success');
-                getEmpleados();
-
+                initTable(e.r, e.c, $("#tbl"));
             } else {
                 showNotification('Error!', e.r, 'danger');
             }
-            $("#frm")[0].reset();
         });
-    return false;
 }
 
 function updatUsuario() {
@@ -82,7 +61,7 @@ function updatUsuario() {
         function(e) {
             if (e.data == true) {
                 showNotification('Aviso!', 'Usuario Modificado', 'success');
-                getEmpleados();
+                getUsuarios();
 
             } else {
                 showNotification('Error!', e.r, 'danger');
