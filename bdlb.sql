@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-10-2017 a las 03:17:44
+-- Tiempo de generación: 22-10-2017 a las 09:04:08
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.0.15
 
@@ -40,7 +40,8 @@ CREATE TABLE `aservicio` (
 
 INSERT INTO `aservicio` (`ID_AServicio`, `ID_Servicio`, `ID_Empleado`, `ID_Vehiculo`, `Precio`) VALUES
 (1, 5, 1, 1, 50),
-(2, 5, 1, 1, 55);
+(2, 5, 1, 1, 55),
+(3, 1, 1, 1, 350);
 
 -- --------------------------------------------------------
 
@@ -118,20 +119,6 @@ INSERT INTO `empleados` (`ID_Empleados`, `Nombre`, `Appat`, `Direccion`, `Telefo
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `mensajes`
---
-
-CREATE TABLE `mensajes` (
-  `idmensajes` int(11) NOT NULL,
-  `id_usu_emi` int(11) NOT NULL,
-  `id_usu_rec` int(11) NOT NULL,
-  `mensaje` text NOT NULL,
-  `visto` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `sservicio`
 --
 
@@ -158,7 +145,7 @@ CREATE TABLE `sservicio` (
 --
 
 INSERT INTO `sservicio` (`ID_Servicio`, `ID_TipoServicio`, `ID_Cliente`, `Fecha`, `Hora`, `Foraneo`, `Tipo_Carga`, `Origen`, `Destino`, `Peso`, `PesoM`, `Bultos`, `BultosM`, `Comentarios`, `status`) VALUES
-(1, 1, 2, '2017-10-20', '13:30', 1, 'Quimico', 'asd', 'zxc', 10, 'Kg', 50, 'Tarima', 'rpaido', 'solicitado'),
+(1, 1, 2, '2017-10-20', '13:30', 1, 'Quimico', 'asd', 'zxc', 10, 'Kg', 50, 'Tarima', 'rpaido', 'Aceptado'),
 (2, 2, 1, '2017-10-28', '15:30', 0, 'Regular', 'nogales', 'az', 3, 'Kg', 5, 'Tarima', 'c', 'solicitado'),
 (3, 3, 1, '2017-12-31', '19:53', 0, 'Inbond', 'asd', 'fdgfd', 3, 'Kg', 4, 'Tarima', '', 'solicitado'),
 (4, 4, 1, '2017-08-29', '17:47', 0, 'Inbond', 'fff', 'jjjj', 23, 'Kg', 32, 'Tarima', '', 'solicitado'),
@@ -184,6 +171,27 @@ INSERT INTO `tservicio` (`ID_TipoServicio`, `Tipo`) VALUES
 (2, 'Exportacion'),
 (3, 'Almacen - Almacen'),
 (4, 'Rampa - Patio');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `updateservicio`
+--
+
+CREATE TABLE `updateservicio` (
+  `ID_UpdateS` int(11) NOT NULL,
+  `ID_Servicio` int(11) NOT NULL,
+  `Status` text NOT NULL,
+  `Fecha` text NOT NULL,
+  `Ubicacion` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `updateservicio`
+--
+
+INSERT INTO `updateservicio` (`ID_UpdateS`, `ID_Servicio`, `Status`, `Fecha`, `Ubicacion`) VALUES
+(1, 2, 'En recinto fiscal', '2017/10/22', 'asdasdasd.com');
 
 -- --------------------------------------------------------
 
@@ -262,12 +270,6 @@ ALTER TABLE `empleados`
   ADD PRIMARY KEY (`ID_Empleados`);
 
 --
--- Indices de la tabla `mensajes`
---
-ALTER TABLE `mensajes`
-  ADD PRIMARY KEY (`idmensajes`);
-
---
 -- Indices de la tabla `sservicio`
 --
 ALTER TABLE `sservicio`
@@ -278,6 +280,12 @@ ALTER TABLE `sservicio`
 --
 ALTER TABLE `tservicio`
   ADD PRIMARY KEY (`ID_TipoServicio`);
+
+--
+-- Indices de la tabla `updateservicio`
+--
+ALTER TABLE `updateservicio`
+  ADD PRIMARY KEY (`ID_UpdateS`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -299,7 +307,7 @@ ALTER TABLE `vehiculos`
 -- AUTO_INCREMENT de la tabla `aservicio`
 --
 ALTER TABLE `aservicio`
-  MODIFY `ID_AServicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_AServicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
@@ -316,11 +324,6 @@ ALTER TABLE `cuentas`
 ALTER TABLE `empleados`
   MODIFY `ID_Empleados` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT de la tabla `mensajes`
---
-ALTER TABLE `mensajes`
-  MODIFY `idmensajes` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT de la tabla `sservicio`
 --
 ALTER TABLE `sservicio`
@@ -330,6 +333,11 @@ ALTER TABLE `sservicio`
 --
 ALTER TABLE `tservicio`
   MODIFY `ID_TipoServicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT de la tabla `updateservicio`
+--
+ALTER TABLE `updateservicio`
+  MODIFY `ID_UpdateS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --

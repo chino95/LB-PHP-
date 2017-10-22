@@ -7,6 +7,12 @@ if(isset($_POST['action'])){
         case 'get':
 		echo $obj->getServicios();
 		break;
+		case 'getDataVer':
+		echo $obj->getStatusServicio($_POST['id']);
+		break;
+		case 'sentUpdate':
+		echo $obj->sentUpdate($_POST['dt']);
+		break;
 		default:
 		echo "Opción Inválida";
 		break;

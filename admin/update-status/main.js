@@ -1,72 +1,75 @@
 $(document).ready(function() {
     Template.setTitle({ title: "Actualizar", "subtitle": "Status" });
-    getUsuarios();
+    getServicios();
 });
-$("#frm").validate({
+$("#frmNew").validate({
     submitHandler: function(form) {
-        newUsuarios();
-    }
-});
-$("#frmmod").validate({
-    submitHandler: function(form) {
-        updatUsuario();
+        sentUpdate();
     }
 });
 var idm;
 
-function MostrarModal(id) {
+function VerServicio(id) {
     idm = id;
-    $.post('main.php', { id: id, action: "getData" },
+
+    $.post('main.php', { id: id, action: "getDataVer" },
         function(e) {
             if (e.data == true) {
-                $('#ncontacto').val(e.r[0]);
-                $('#nempresa').val(e.r[1]);
-                $('#ndireccion').val(e.r[2]);
-                $('#ntelefono').val(e.r[3]);
-                $('#nctpat').val(e.r[4]);
-                $('#ncorreo').val(e.r[5]);
+                $('#modalVer').modal();
 
-                $('#modalUpdate').modal();
+                initTable(e.r, e.c, $("#tablastatus"));
             } else {
-                showNotification('Error!', e.r, 'danger');
+                if (e.error == true)
+                    showNotification('Error!', e.r, 'danger');
+                else
+                    showNotification('Aviso!', 'No hay datos para mostrar', 'warning');
             }
         });
 
     return false;
 }
 
-function getUsuarios() {
+
+function UpdateServicio(id) {
+    idm = id;
+    $('#modalUpdate').modal();
+    return false;
+}
+
+function getServicios() {
     $.post('main.php', { action: "get" },
         function(e) {
             if (e.data == true) {
                 initTable(e.r, e.c, $("#tbl"));
             } else {
-                showNotification('Error!', e.r, 'danger');
+                if (e.error == true)
+                    showNotification('Error!', e.r, 'danger');
+                else
+                    showNotification('Aviso!', 'No hay datos para mostrar', 'warning');
             }
         });
 }
 
-function updatUsuario() {
-    var dataus = {
+function sentUpdate() {
+    var dt = {
         id: idm,
-        nom: $("#mnombre").val()
-
+        status: $("#status").val(),
+        fecha: 0,
+        ubi: $("#ubicacion").val()
     };
-    var datacu = {
-        idcu: 0,
-        cor: $("#mcorreo").val(),
-        psw: $("#mpassword").val()
-    };
-    $.post('main.php', { dtus: dataus, dtcu: datacu, action: "update" },
+    $.post('main.php', { dt: dt, action: "sentUpdate" },
         function(e) {
             if (e.data == true) {
-                showNotification('Aviso!', 'Usuario Modificado', 'success');
+                showNotification('Aviso!', 'Status Actualizado', 'success');
                 getUsuarios();
 
             } else {
-                showNotification('Error!', e.r, 'danger');
+                if (e.error == true)
+                    showNotification('Error!', e.r, 'danger');
+                else
+                    showNotification('Aviso!', 'No hay datos para mostrar', 'warning');
             }
-            $("#frmmod")[0].reset();
+            $("#frmNew")[0].reset();
             $('#modalUpdate').modal('toggle');
         });
     return false;

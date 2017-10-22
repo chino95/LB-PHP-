@@ -22,7 +22,10 @@ function RechazarServicio() {
                 showNotification('Aviso!', 'Solicitud Aceptada', 'success');
                 getMservicio();
             } else {
-                showNotification('Error!', e.r, 'danger');
+                if (e.error == true)
+                    showNotification('Error!', e.r, 'danger');
+                else
+                    showNotification('Aviso!', 'No hay datos para mostrar', 'warning');
             }
             $('#modalVer').modal('toggle');
             $("#frm")[0].reset();
@@ -43,7 +46,10 @@ function AceptarSolicitud() {
                 showNotification('Aviso!', 'Solicitud Aceptada', 'success');
                 getMservicio();
             } else {
-                showNotification('Error!', e.r, 'danger');
+                if (e.error == true)
+                    showNotification('Error!', e.r, 'danger');
+                else
+                    showNotification('Aviso!', 'No hay datos para mostrar', 'warning');
             }
             $('#modalVer').modal('toggle');
             $("#frm")[0].reset();
@@ -57,7 +63,10 @@ function getMservicio() {
             if (e.data == true) {
                 initTable(e.r, e.c, $("#tbl"));
             } else {
-                showNotification('Error!', e.r, 'danger');
+                if (e.error == true)
+                    showNotification('Error!', e.r, 'danger');
+                else
+                    showNotification('Aviso!', 'No hay datos para mostrar', 'warning');
             }
         });
 }
@@ -74,11 +83,10 @@ function VerServicio(id) {
                 getEmpVeh();
                 $('#modalVer').modal();
             } else {
-                if (e.error != false) {
+                if (e.error == true)
                     showNotification('Error!', e.r, 'danger');
-                } else {
-                    showNotification('Aviso!', 'No hay datos', 'warning');
-                }
+                else
+                    showNotification('Aviso!', 'No hay datos para mostrar', 'warning');
             }
         });
     return false;
@@ -92,7 +100,10 @@ function getEmpVeh() {
                 $('#emp').html(e.e);
                 $('#veh').html(e.v);
             } else {
-                showNotification('Error!', e.r, 'danger');
+                if (e.error == true)
+                    showNotification('Error!', e.r, 'danger');
+                else
+                    showNotification('Aviso!', 'No hay datos para mostrar', 'warning');
             }
         });
     return false;

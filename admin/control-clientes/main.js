@@ -25,7 +25,10 @@ function MostrarModal(idCliente, idCuenta) {
 
                 $('#modalUpdate').modal();
             } else {
-                showNotification('Error!', e.r, 'danger');
+                if (e.error == true)
+                    showNotification('Error!', e.r, 'danger');
+                else
+                    showNotification('Aviso!', 'No hay datos para mostrar', 'warning');
             }
         });
 
@@ -38,7 +41,10 @@ function getUsuarios() {
             if (e.data == true) {
                 initTable(e.r, e.c, $("#tbl"));
             } else {
-                showNotification('Error!', e.r, 'danger');
+                if (e.error == true)
+                    showNotification('Error!', e.r, 'danger');
+                else
+                    showNotification('Aviso!', 'No hay datos para mostrar', 'warning');
             }
         });
 }
@@ -68,7 +74,10 @@ function updatUsuario() {
                 getUsuarios();
 
             } else {
-                showNotification('Error!', e.r, 'danger');
+                if (e.error == true)
+                    showNotification('Error!', e.r, 'danger');
+                else
+                    showNotification('Aviso!', 'No hay datos para mostrar', 'warning');
             }
             $("#frmmod")[0].reset();
             $('#modalUpdate').modal('toggle');

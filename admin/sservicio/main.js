@@ -23,11 +23,12 @@ function getTServicio() {
     $.post('main.php', { action: "getTServicio" },
         function(e) {
             if (e.data == true) {
-
                 $('#tipos').html(e.l);
-
             } else {
-                showNotification('Error!', e.r, 'danger');
+                if (e.error == true)
+                    showNotification('Error!', e.r, 'danger');
+                else
+                    showNotification('Aviso!', 'No hay datos para mostrar', 'warning');
             }
         });
     return false;
@@ -63,7 +64,10 @@ function newSolicitud() {
                 showNotification('Aviso!', 'Servicio Solicitado', 'success');
                 clean();
             } else {
-                showNotification('Error!', e.r, 'danger');
+                if (e.error == true)
+                    showNotification('Error!', e.r, 'danger');
+                else
+                    showNotification('Aviso!', 'No hay datos para mostrar', 'warning');
             }
             $("#frm")[0].reset();
         });
