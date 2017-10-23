@@ -137,7 +137,7 @@ $(document).ready(function() {
                 function(e) {
                     if (e.data == true) {
                         if (e.r['nivel'] == 0) {
-                            window.location.replace("../admin/blank-page");
+                            window.location.replace("../admin/sservicio");
                         } else {
                             window.location.replace("../admin/control-clientes");
                         }

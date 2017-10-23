@@ -9,14 +9,30 @@ class Usuarios extends ConnectionManager{
 			'r'=>'');
 		$cnx = $this-> connectMysql();
 		$dt['psw'] = hash('sha256', $dt['psw']);
+		$idcliente = 0;
+		$nomcontacto=0;
 		try{
 			$sth = $cnx->prepare("SELECT ID_Cuenta, Correo, Psw, Nivel FROM cuentas WHERE Correo=:cor AND Psw=:psw");
 			$sth->execute($dt);
 			if($row = $sth->fetch(PDO::FETCH_ASSOC)){
+				$idcuenta = $row['ID_Cuenta'];
+				$correo = $row['Correo'];
+				$nivel = $row['Nivel'];
+				if($row['Nivel'] == '0')
+				{
+					$sth = $cnx->prepare("SELECT ID_Cliente, Nombre_contacto FROM clientes WHERE ID_Cuenta = :idc");
+					$sth->bindParam(":idc", $row['ID_Cuenta']);
+					$sth->execute();
+					if($row = $sth->fetch(PDO::FETCH_ASSOC)){
+					$idcliente = $row['ID_Cliente'];
+					$nomcontacto = $row['Nombre_contacto'];
+					}
+				}
 					session_start();
-					$_SESSION['data'] = array('idcuenta'=> $row['ID_Cuenta'],'correo'=> $row['Correo'], 'nivel'=>$row['Nivel']);
+					$_SESSION['data'] = array('idcuenta'=> $idcuenta, 'correo'=> $correo, 'nivel'=>$nivel, 'idcliente'=> $idcliente, 'nomcont'=>$nomcontacto);
 					$retval['data']=true;
 					$retval['r']=$_SESSION['data'];
+				
 			}
 			else{
 				$retval['r']="Usuario o Contraseña Incorrectos";

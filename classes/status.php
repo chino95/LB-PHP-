@@ -12,7 +12,7 @@ class status extends ConnectionManager{
 		try{
 			$sth = $cnx->prepare("SELECT s.ID_Servicio, c.Nombre_empresa, s.Fecha, s.Hora FROM sservicio s  
 			INNER JOIN clientes c ON s.ID_Cliente = c.ID_Cliente
-			WHERE s.status = 'solicitado'");
+			WHERE s.status = 'Aceptado'");
 			$sth->execute();
 
 			while($row = $sth->fetch(PDO::FETCH_ASSOC)){

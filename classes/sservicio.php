@@ -11,7 +11,7 @@ class Sservicio extends ConnectionManager{
 
 		$cnx = $this-> connectMysql();
         session_start();
-        $dt['idcliente']=$_SESSION['data']['idcuenta'];
+        $dt['idcliente']=$_SESSION['data']['idcliente'];
 		try{
 			$query="INSERT INTO sservicio (ID_Cliente, ID_TipoServicio, Foraneo, Tipo_Carga, Origen, Destino, Fecha, Hora, Peso, PesoM, Bultos, BultosM, Comentarios, status) 
 			VALUES (:idcliente, :tipos, :foraneo, :tipoe, :origen, :destino, :fecha, :hora, :peso, :pesom, :bultos, :bultosm, :comentario, :status)";

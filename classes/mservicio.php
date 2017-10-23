@@ -3,6 +3,30 @@ require_once('../../cnf/pdocnx.php');
 
 class Mservicio extends ConnectionManager{
 
+	public function rechazarsoli($dt){
+		$retval=array('data'=>false,
+			'error'=>false,
+			'r'=>'');
+
+		$cnx = $this-> connectMysql();
+		$ids = $dt["idser"];
+		try{
+				$query="UPDATE sservicio SET status = 'Rechazado' WHERE ID_Servicio = :id";			
+				$sth = $cnx->prepare($query);
+				$sth->bindParam(':id', $ids);
+				$sth->execute();
+				if($retval['r']=$sth->rowCount()){
+				$retval['data']=true;
+				}
+			
+		}
+		catch(PDOException $e){
+            $retval['error']=true;
+			$retval['r']=$e->getMessage();
+		}
+		return json_encode($retval);
+	}
+
 	public function aceptarsoli($dt){
 		$retval=array('data'=>false,
 			'error'=>false,
@@ -48,7 +72,7 @@ class Mservicio extends ConnectionManager{
 				$retval['data']=true;
 				array_push($retval['r'], array($row['ID_Servicio'], $row['Nombre_empresa'], $row['Fecha'], $row['Hora'],
 				'<button class="btn btn-embossed btn-success m-r-20" onclick="VerServicio('.$row['ID_Servicio'].')">Ver</button>
-				<button class="btn btn-embossed btn-danger m-r-20" onclick="RechazarServicio('.$row['ID_Servicio'].')">Rechazar</button>'));
+				<button class="btn btn-embossed btn-danger m-r-20" onclick="VerRecha('.$row['ID_Servicio'].')">Rechazar</button>'));
 			}
 		}
 		catch(PDOException $e){
