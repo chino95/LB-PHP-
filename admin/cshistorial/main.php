@@ -1,8 +1,8 @@
 <?php
 if(isset($_POST['action'])){
-	include '../../classes/mservicio.php';
+	include '../../classes/cshistorial.php';
 	header('Content-Type: application/json');
-	$obj =  new MServicio();
+	$obj =  new CShistorial();
 	switch ($_POST['action']) {
         case 'get':
 		echo $obj->getMServicio();

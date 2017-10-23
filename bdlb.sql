@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-10-2017 a las 09:04:08
+-- Tiempo de generación: 23-10-2017 a las 05:31:52
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.0.15
 
@@ -39,9 +39,7 @@ CREATE TABLE `aservicio` (
 --
 
 INSERT INTO `aservicio` (`ID_AServicio`, `ID_Servicio`, `ID_Empleado`, `ID_Vehiculo`, `Precio`) VALUES
-(1, 5, 1, 1, 50),
-(2, 5, 1, 1, 55),
-(3, 1, 1, 1, 350);
+(1, 1, 1, 1, 450);
 
 -- --------------------------------------------------------
 
@@ -145,11 +143,8 @@ CREATE TABLE `sservicio` (
 --
 
 INSERT INTO `sservicio` (`ID_Servicio`, `ID_TipoServicio`, `ID_Cliente`, `Fecha`, `Hora`, `Foraneo`, `Tipo_Carga`, `Origen`, `Destino`, `Peso`, `PesoM`, `Bultos`, `BultosM`, `Comentarios`, `status`) VALUES
-(1, 1, 2, '2017-10-20', '13:30', 1, 'Quimico', 'asd', 'zxc', 10, 'Kg', 50, 'Tarima', 'rpaido', 'Aceptado'),
-(2, 2, 1, '2017-10-28', '15:30', 0, 'Regular', 'nogales', 'az', 3, 'Kg', 5, 'Tarima', 'c', 'solicitado'),
-(3, 3, 1, '2017-12-31', '19:53', 0, 'Inbond', 'asd', 'fdgfd', 3, 'Kg', 4, 'Tarima', '', 'solicitado'),
-(4, 4, 1, '2017-08-29', '17:47', 0, 'Inbond', 'fff', 'jjjj', 23, 'Kg', 32, 'Tarima', '', 'solicitado'),
-(5, 1, 1, '2017-08-25', '07:53', 1, 'Quimico', 'hh', 'jj', 12, 'Lbs', 2, 'Tambo', 'asd', 'Aceptado');
+(1, 1, 1, '2017-10-23', '17:45', 1, 'Quimico', 'a', 'b', 10, 'Kg', 5, 'Cubeta', 'c', 'Aceptado'),
+(2, 2, 1, '2017-10-31', '12:34', 0, 'Inbond', 's', 'd', 5, 'Lbs', 4, 'Tambo', 'c', 'solicitado');
 
 -- --------------------------------------------------------
 
@@ -191,7 +186,8 @@ CREATE TABLE `updateservicio` (
 --
 
 INSERT INTO `updateservicio` (`ID_UpdateS`, `ID_Servicio`, `Status`, `Fecha`, `Ubicacion`) VALUES
-(1, 2, 'En recinto fiscal', '2017/10/22', 'asdasdasd.com');
+(1, 1, 'En recinto fiscal', '2017/10/23', 'asdasd.com'),
+(2, 1, '21', '2017/10/23', 'asd');
 
 -- --------------------------------------------------------
 
@@ -307,7 +303,7 @@ ALTER TABLE `vehiculos`
 -- AUTO_INCREMENT de la tabla `aservicio`
 --
 ALTER TABLE `aservicio`
-  MODIFY `ID_AServicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_AServicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
@@ -327,7 +323,7 @@ ALTER TABLE `empleados`
 -- AUTO_INCREMENT de la tabla `sservicio`
 --
 ALTER TABLE `sservicio`
-  MODIFY `ID_Servicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID_Servicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `tservicio`
 --
@@ -337,7 +333,7 @@ ALTER TABLE `tservicio`
 -- AUTO_INCREMENT de la tabla `updateservicio`
 --
 ALTER TABLE `updateservicio`
-  MODIFY `ID_UpdateS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_UpdateS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --

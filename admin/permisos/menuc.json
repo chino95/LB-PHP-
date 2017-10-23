@@ -9,11 +9,11 @@
                     "href": "../sservicio/"
                 }, {
                     "title": "Servicios en Proceso",
-                    "href": "../blank-page/"
+                    "href": "../cupdate-status/"
                 },
                 {
                     "title": "Historial Servicios",
-                    "href": "../blank-page/"
+                    "href": "../cshistorial/"
                 }
             ]
         }]

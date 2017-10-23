@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    Template.setTitle({ title: "Actualizar", "subtitle": "Status" });
+    Template.setTitle({ title: "Ver", "subtitle": "Status" });
     getServicios();
 });
 $("#frmNew").validate({
@@ -69,8 +69,8 @@ function sentUpdate() {
                 else
                     showNotification('Aviso!', 'No hay datos para mostrar', 'warning');
             }
-            $('#modalUpdate').modal('toggle');
             $("#frmNew")[0].reset();
+            $('#modalUpdate').modal('toggle');
         });
     return false;
 }
