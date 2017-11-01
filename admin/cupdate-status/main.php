@@ -13,6 +13,9 @@ if(isset($_POST['action'])){
 		case 'sentUpdate':
 		echo $obj->sentUpdate($_POST['dt']);
 		break;
+		case 'FinServicio':
+		echo $obj->FinServicio($_POST['dt']);
+		break;
 		default:
 		echo "Opción Inválida";
 		break;

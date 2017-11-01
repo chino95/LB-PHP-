@@ -56,7 +56,7 @@ function newSolicitud() {
         fecha: $("#fecha").val(),
         hora: $("#hora").val(),
         comentario: $("#comenta").val(),
-        status: 'solicitado'
+        status: 'Solicitado'
     };
     $.post('main.php', { dt: dt, action: "new" },
         function(e) {

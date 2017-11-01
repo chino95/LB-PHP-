@@ -40,7 +40,11 @@ function getServicios() {
     $.post('main.php', { action: "get" },
         function(e) {
             if (e.data == true) {
-                initTable(e.r, e.c, $("#tbl"));
+                var cd = [{
+                    targets: [0, 1, 2, 3],
+                    className: "print"
+                }];
+                initTable(e.r, e.c, $("#tbl"), cd);
             } else {
                 if (e.error == true)
                     showNotification('Error!', e.r, 'danger');
@@ -71,6 +75,35 @@ function sentUpdate() {
             }
             $('#modalUpdate').modal('toggle');
             $("#frmNew")[0].reset();
+        });
+    return false;
+}
+
+
+function FinServicio(id) {
+    idm = id;
+    $('#modalFin').modal();
+    return false;
+}
+
+
+function MFinServicio() {
+    var dt = {
+        id: idm
+    };
+    $.post('main.php', { dt: dt, action: "FinServicio" },
+        function(e) {
+            if (e.data == true) {
+                showNotification('Aviso!', 'Servicio Finalizado', 'success');
+                getServicios();
+            } else {
+                if (e.error == true)
+                    showNotification('Error!', e.r, 'danger');
+                else
+                    showNotification('Aviso!', 'No hay datos para mostrar', 'warning');
+            }
+            $("#frmNew")[0].reset();
+            $('#modalFin').modal('toggle');
         });
     return false;
 }

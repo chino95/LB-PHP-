@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    Template.setTitle({ title: "Captura", "subtitle": "Usuarios" });
+    Template.setTitle({ title: "Captura", "subtitle": "Clientes" });
     getUsuarios();
 });
 $("#frmmod").validate({
@@ -39,7 +39,11 @@ function getUsuarios() {
     $.post('main.php', { action: "get" },
         function(e) {
             if (e.data == true) {
-                initTable(e.r, e.c, $("#tbl"));
+                var cd = [{
+                    targets: [0, 1, 2, 3, 4, 5],
+                    className: "print"
+                }];
+                initTable(e.r, e.c, $("#tbl"), cd);
             } else {
                 if (e.error == true)
                     showNotification('Error!', e.r, 'danger');

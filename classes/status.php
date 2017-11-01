@@ -78,6 +78,30 @@ class status extends ConnectionManager{
 		}
 		return json_encode($retval);
 	}
+	
+	public function FinServicio($dt){
+		$retval=array('data'=>false,
+			'error'=>false,
+			'r'=>'');
+		$obj = new ConnectionManager();
+		$cnx = $obj-> connectMysql();
+		try{
+			$query="UPDATE sservicio SET status = 'Finalizado' WHERE ID_Servicio = :id";
+			$sth = $cnx->prepare($query);
+			$sth->execute($dt);
+			$retval['s']=$query;
+			if($retval['r']=$sth->rowCount()){
+				$retval['data']=true;
+			}
+				
+		}
+		catch(PDOException $e){
+			$retval['error']=true;
+			$retval['r']=$e->getMessage();
+		}
+		return json_encode($retval);
+	}
+
 
 }
 ?>

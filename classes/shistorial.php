@@ -7,17 +7,16 @@ class Shistorial extends ConnectionManager{
 		$retval=array('data'=>false,
 			'error'=>false,
             'r'=>array(),
-			'c'=>array(array('title'=>'ID'),array('title'=>'Cliente'),array('title'=>'Fecha'),array('title'=>'Hora'),array('title'=>'Accion')));
+			'c'=>array(array('title'=>'ID'),array('title'=>'Cliente'),array('title'=>'Fecha'),array('title'=>'Hora'),array('title'=>'Status'),array('title'=>'Accion')));
 		$cnx = $this-> connectMysql();
 		try{
-			$sth = $cnx->prepare("SELECT s.ID_Servicio, c.Nombre_empresa, s.Fecha, s.Hora FROM sservicio s  
-			INNER JOIN clientes c ON s.ID_Cliente = c.ID_Cliente
-			WHERE s.status = 'solicitado'");
+			$sth = $cnx->prepare("SELECT s.ID_Servicio, c.Nombre_empresa, s.Fecha, s.Hora, s.status FROM sservicio s  
+			INNER JOIN clientes c ON s.ID_Cliente = c.ID_Cliente");
 			$sth->execute();
 
 			while($row = $sth->fetch(PDO::FETCH_ASSOC)){
 				$retval['data']=true;
-				array_push($retval['r'], array($row['ID_Servicio'], $row['Nombre_empresa'], $row['Fecha'], $row['Hora'],
+				array_push($retval['r'], array($row['ID_Servicio'], $row['Nombre_empresa'], $row['Fecha'], $row['Hora'], $row['status'],
 				'<button class="btn btn-embossed btn-success m-r-20" onclick="VerServicio('.$row['ID_Servicio'].')">Ver</button>'));
 			}
 		}

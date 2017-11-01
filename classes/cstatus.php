@@ -81,5 +81,8 @@ class Cstatus extends ConnectionManager{
 		return json_encode($retval);
 	}
 
+
+
+
 }
 ?>

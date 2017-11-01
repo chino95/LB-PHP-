@@ -36,7 +36,11 @@ function getTServicios() {
     $.post('main.php', { action: "get" },
         function(e) {
             if (e.data == true) {
-                initTable(e.r, e.c, $("#tbl"));
+                var cd = [{
+                    targets: [0, 1],
+                    className: "print"
+                }];
+                initTable(e.r, e.c, $("#tbl"), cd);
             } else {
                 if (e.error == true)
                     showNotification('Error!', e.r, 'danger');

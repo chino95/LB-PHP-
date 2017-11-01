@@ -66,7 +66,6 @@ function showNotification(textS, textN, typez) {
 }
 
 
-
 function initTable(ds, c, table, cd, footerCallback) {
 
     if (typeof cd === typeof undefined)
@@ -75,43 +74,44 @@ function initTable(ds, c, table, cd, footerCallback) {
         footerCallback = null;
     var oTable = table.dataTable({
         //sDom: "<'row'<'col-md-6'f><'col-md-6'T>r>t<'row'<'col-md-6'i><'spcol-md-6an6'p>>",
+        dom: 'fBTrtip',
         destroy: true,
         autoWidth: false,
         data: ds,
         columns: c,
         columnDefs: cd,
-        "language": {
-            "aria": {
-                "sortAscending": ": Orden Ascendente",
-                "sortDescending": ": Orden Descendente"
+        language: {
+            aria: {
+                sortAscending: ": Orden Ascendente",
+                sortDescending: ": Orden Descendente"
             },
-            "emptyTable": "No hay datos para mostrar",
-            "info": "Mostrando _START_ hasta _END_ de _TOTAL_ registros",
-            "infoEmpty": "No se encontraron registros",
-            "infoFiltered": "(Filtrado desde _MAX_ registros totales)",
-            "lengthMenu": "_MENU_",
-            "search": "Buscar:",
-            "zeroRecords": "No se encontraron registros"
+            emptyTable: "No hay datos para mostrar",
+            info: "Mostrando _START_ hasta _END_ de _TOTAL_ registros",
+            infoEmpty: "No se encontraron registros",
+            infoFiltered: "(Filtrado desde _MAX_ registros totales)",
+            lengthMenu: "_MENU_",
+            search: "Buscar:",
+            zeroRecords: "No se encontraron registros"
         },
 
         buttons: [
-            { extend: 'print', className: 'btn btn-outline blue', text: 'IMPRIMIR', footer: table.find('tfoot').length, exportOptions: { columns: '.print' } },
-            { extend: 'pdf', className: 'btn btn-outline red', text: 'PDF', footer: table.find('tfoot').length, exportOptions: { columns: '.pdf' } },
-            { extend: 'excel', className: 'btn btn-outline green', text: 'EXCEL', footer: table.find('tfoot').length, exportOptions: { columns: '.excel' } },
-            { extend: 'copy', className: 'btn btn-outline purple', text: 'COPIAR', footer: table.find('tfoot').length, exportOptions: { columns: '.copy' } }
+            { extend: 'print', className: 'btn btn-default btn-transparent', text: 'IMPRIMIR', footer: table.find('tfoot').length, exportOptions: { columns: '.print' } },
+            { extend: 'pdf', className: 'btn btn-transparent btn-danger', text: 'PDF', footer: table.find('tfoot').length, exportOptions: { columns: '.print' } },
+            { extend: 'excel', className: 'btn btn-transparent btn-success', text: 'EXCEL', footer: table.find('tfoot').length, exportOptions: { columns: '.print' } },
+            { extend: 'copy', className: 'btn btn-transparent btn-info', text: 'COPIAR', footer: table.find('tfoot').length, exportOptions: { columns: '.print' } }
         ],
         fnDrawCallback: function(oSettings) {
-            //table.parent().parent().parent().parent().find('.export-options-container').append($('.exportOptions'));
+            $(".dt-buttons a").removeClass("dt-button");
             $('[data-toggle="tooltip"]').tooltip();
             $('#tbl_length select').select2();
         },
         footerCallback: footerCallback,
         responsive: true,
-        "lengthMenu": [
+        lengthMenu: [
             [10, 30, 50, 100, -1],
             [10, 30, 50, 100, "Todos"]
         ],
-        "pageLength": 10
+        pageLength: 10
 
     });
 }

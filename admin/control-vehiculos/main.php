@@ -1,20 +1,20 @@
 <?php
 if(isset($_POST['action'])){
-	include '../../cnf/usuarios.php';
+	include '../../classes/vehiculo.php';
 	header('Content-Type: application/json');
-	$obj =  new Usuarios();
+	$obj =  new Vehiculo();
 	switch ($_POST['action']) {
 		case 'new':
-		echo $obj->newUsuario($_POST['dtcu'],$_POST['dtus']);
+		echo $obj->newVehiculo($_POST['dt']);
 		break;
         case 'get':
-		echo $obj->getUsuario();
+		echo $obj->getVehiculos();
 		break;
 		case 'getData':
-		echo $obj->getModalUsuarios($_POST['id']);
+		echo $obj->getModalVehiculo($_POST['id']);
 		break;
         case 'update':
-		echo $obj->updateUsuario($_POST['dtus'],$_POST['dtcu']);
+		echo $obj->updateVehiculo($_POST['dt']);
 		break;
 		default:
 		echo "Opción Inválida";

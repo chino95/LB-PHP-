@@ -155,7 +155,7 @@
                                             <div class="form-group ">
                                                 <label class="col-sm-3 control-label ">Tipo de Vehiculo</label>
                                                 <div class="col-sm-9 prepend-icon ">
-                                                    <select class="form-control " id="ubicacion " data-placeholder="Seleccione una ciudad ">
+                                                    <select class="form-control " id="tipov" data-placeholder="Seleccione una ciudad ">
                                                         <option>Seleccione un tipo</option>
                                                         <option>Pick-Up</option>
                                                         <option>Sedan</option>
@@ -200,7 +200,7 @@
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label">Capacidad de Volumen</label>
                                                 <div class="col-sm-9 prepend-icon">
-                                                    <input type="number" name="capavol" id="capavol" class="form-control" placeholder="Capacidad de Volumen" required aria-required="true">
+                                                    <input type="number" name="capavol" id="capvol" class="form-control" placeholder="Capacidad de Volumen" required aria-required="true">
                                                     <i class="icon icons-graphic-design-25"></i>
                                                 </div>
                                             </div>
@@ -274,24 +274,83 @@
 
                     <form role="form" id="frmmod" class="form-horizontal form-validation" novalidate="novalidate">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Nombre</label>
+                            <label class="col-sm-3 control-label">Marca</label>
                             <div class="col-sm-9 prepend-icon">
-                                <input type="text" name="mnombre" id="mnombre" class="form-control" placeholder="Mínimo 6 caracteres..." required aria-required="true">
-                                <i class="icon-user"></i>
+                                <input type="text" name="marca" id="mmarca" class="form-control" placeholder="Marca" required aria-required="true">
+                                <i class="icon icons-travel-transportation-10"></i>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Correo</label>
+                            <label class="col-sm-3 control-label">Modelo</label>
                             <div class="col-sm-9 prepend-icon">
-                                <input type="text" name="mcorreo" id="mcorreo" class="form-control" placeholder="Mínimo 6 caracteres..." required aria-required="true">
-                                <i class="icon-envelope"></i>
+                                <input type="text" name="modelo" id="mmodelo" class="form-control" placeholder="Modelo" required aria-required="true">
+                                <i class="icon icons-travel-transportation-10"></i>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Contraseña</label>
+                            <label class="col-sm-3 control-label">Serie</label>
                             <div class="col-sm-9 prepend-icon">
-                                <input type="password" name="mpassword" id="mpassword" class="form-control" placeholder="Mínimo 6 caracteres..." minlength="6" required aria-required="true">
-                                <i class="icon-key"></i>
+                                <input type="text" name="serie" id="mserie" class="form-control" placeholder="Serie" required aria-required="true">
+                                <i class="icon icons-travel-transportation-10"></i>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="col-sm-3 control-label ">Tipo de Vehiculo</label>
+                            <div class="col-sm-9 prepend-icon ">
+                                <select class="form-control " id="mtipov" data-placeholder="Seleccione una ciudad ">
+                                            <option>Seleccione un tipo</option>
+                                            <option>Pick-Up</option>
+                                            <option>Sedan</option>
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Placa Mexicana</label>
+                            <div class="col-sm-9 prepend-icon">
+                                <input type="text" name="placamex" id="mplacamex" class="form-control" placeholder="Numero de placa" required aria-required="true">
+                                <i class="icon icons-office-06"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Placa USA</label>
+                            <div class="col-sm-9 prepend-icon">
+                                <input type="text" name="placausa" id="mplacausa" class="form-control" placeholder="Numero de placa" required aria-required="true">
+                                <i class="icon icons-office-06"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Clave de Vehiculo</label>
+                            <div class="col-sm-9 prepend-icon">
+                                <input type="number" name="clavevehi" id="mclavevehi" class="form-control" placeholder="Clave del Vehiculo" required aria-required="true">
+                                <i class="icon icons-office-06"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Numero Economico</label>
+                            <div class="col-sm-9 prepend-icon">
+                                <input type="number" name="numeco" id="mnumeco" class="form-control" placeholder="Numero Economico" required aria-required="true">
+                                <i class="icon icons-office-06"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Capacidad de Carga</label>
+                            <div class="col-sm-9 prepend-icon">
+                                <input type="number" name="capcar" id="mcapcar" class="form-control" placeholder="Capacidad de Carga" required aria-required="true">
+                                <i class="icon icons-graphic-design-24"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Capacidad de Volumen</label>
+                            <div class="col-sm-9 prepend-icon">
+                                <input type="number" name="capvol" id="mcapvol" class="form-control" placeholder="Capacidad de Volumen" required aria-required="true">
+                                <i class="icon icons-graphic-design-25"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Medidas</label>
+                            <div class="col-sm-9 prepend-icon">
+                                <input type="text" name="medidas" id="mmedidas" class="form-control" placeholder="Medidas del Vehiculo" required aria-required="true">
+                                <i class="icon icons-graphic-design-23"></i>
                             </div>
                         </div>
                 </div>

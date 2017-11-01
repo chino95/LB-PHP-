@@ -18,7 +18,11 @@ function getEmpleados() {
     $.post('main.php', { action: "get" },
         function(e) {
             if (e.data == true) {
-                initTable(e.r, e.c, $("#tbl"));
+                var cd = [{
+                    targets: [0, 1, 2, 3, 4, 5, 6, 7],
+                    className: "print"
+                }];
+                initTable(e.r, e.c, $("#tbl"), cd);
             } else {
                 if (e.error == true)
                     showNotification('Error!', e.r, 'danger');
