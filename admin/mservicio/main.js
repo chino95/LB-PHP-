@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    Template.setTitle({ title: "Captura", "subtitle": "Usuarios" });
+    Template.setTitle({ title: "Ver", "subtitle": "Servicios" });
     getMservicio();
 });
 $("#frm").validate({

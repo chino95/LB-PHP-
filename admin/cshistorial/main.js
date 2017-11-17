@@ -1,5 +1,8 @@
 $(document).ready(function() {
-    Template.setTitle({ title: "Captura", "subtitle": "Usuarios" });
+    Template.setTitle({
+        title: "Ver",
+        "subtitle": "Historial"
+    });
     getMservicio();
 });
 $("#frm").validate({
@@ -22,7 +25,10 @@ function AceptarSolicitud() {
         veh: $("select[name='veh'] option:selected").index(),
         precio: $('#precio').val()
     };
-    $.post('main.php', { dt: dt, action: "aceptarsoli" },
+    $.post('main.php', {
+            dt: dt,
+            action: "aceptarsoli"
+        },
         function(e) {
             if (e.data == true) {
                 showNotification('Aviso!', 'Solicitud Aceptada', 'success');
@@ -49,7 +55,10 @@ function RechazarSolicitud() {
     var dt = {
         idser: idm
     };
-    $.post('main.php', { dt: dt, action: "rechazarsoli" },
+    $.post('main.php', {
+            dt: dt,
+            action: "rechazarsoli"
+        },
         function(e) {
             if (e.data == true) {
                 showNotification('Aviso!', 'Solicitud Rechazada', 'warning');
@@ -67,7 +76,9 @@ function RechazarSolicitud() {
 }
 
 function getMservicio() {
-    $.post('main.php', { action: "get" },
+    $.post('main.php', {
+            action: "get"
+        },
         function(e) {
             if (e.data == true) {
                 var cd = [{
@@ -86,7 +97,10 @@ function getMservicio() {
 
 function VerServicio(id) {
     idm = id;
-    $.post('main.php', { id: id, action: "getData" },
+    $.post('main.php', {
+            id: id,
+            action: "getData"
+        },
         function(e) {
             if (e.data == true) {
                 var tabla = '<tr><th>Empresa</th><th>Fecha</th><th>Hora</th><th>Foraneo</th><th>Tipo de Carga</th><th>Origen</th><th>Destino</th><th>Peso</th><th>Bultos</th><th>Comentarios</th></tr>';
@@ -96,6 +110,7 @@ function VerServicio(id) {
                 getEmpVeh();
                 $('#modalVer').modal();
             } else {
+
                 if (e.error == true)
                     showNotification('Error!', e.r, 'danger');
                 else
@@ -107,7 +122,9 @@ function VerServicio(id) {
 
 
 function getEmpVeh() {
-    $.post('main.php', { action: "getEmpVeh" },
+    $.post('main.php', {
+            action: "getEmpVeh"
+        },
         function(e) {
             if (e.data == true) {
                 $('#emp').html(e.e);

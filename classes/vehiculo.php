@@ -7,9 +7,7 @@ class Vehiculo extends ConnectionManager{
 		$retval=array('data'=>false,
 			'error'=>false,
 			'r'=>'');
-
 		$cnx = $this-> connectMysql();
-
 		try{
 			$query="INSERT INTO vehiculos (Marca, Modelo, Serie, Tipo, Placa_Mex, Placa_Usa, Clave_Vehiculo, Numero_Economico, Capacidad_Carga, Capacidad_Volumen, Medidas) 
 			VALUES (:marca, :modelo, :serie, :tipov, :placam, :placau, :clavev, :numeco, :capcar, :capvol, :medidas)";

@@ -10,6 +10,12 @@ $(document).ready(function() {
     $('#registeru').click(function(e) {
         $('#modalNew').modal();
     });
+
+    $('#icor, #ipsw').on('keyup', function(e) {
+        if (e.keyCode == 13) {
+            loginDB();
+        }
+    });
     /////
 
     $('#saveNew').click(function(e) {
