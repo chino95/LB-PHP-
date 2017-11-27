@@ -3,6 +3,7 @@ $(document).ready(function() {
     $.post('../permisos/session.php', { action: 'check' }, function(e) {
         if (e.data) {
             Template.setUser(e.correo);
+            $('.nomemp').text(e.nomemp);
             $("#btnlogout1").click(logout);
             $("#btnlogout").click(logout);
 
@@ -10,8 +11,14 @@ $(document).ready(function() {
                 $.getJSON('../permisos/menuc.json', function(data, status, xhr) {
                     Template.setMenu(data);
                 });
-            } else {
+            }
+            if (e.nivel == 1) {
                 $.getJSON('../permisos/menu.json', function(data, status, xhr) {
+                    Template.setMenu(data);
+                });
+            }
+            if (e.nivel == 2) {
+                $.getJSON('../permisos/menucu.json', function(data, status, xhr) {
                     Template.setMenu(data);
                 });
             }

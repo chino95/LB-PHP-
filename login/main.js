@@ -77,23 +77,29 @@ $(document).ready(function() {
                 ctpatc = 0;
             }
 
+            var dtce = {
+                empresa: $("#nempresa").val(),
+                ctpat: ctpatc
+            };
             var dtcl = {
                 idcu: 0,
-                contacto: $("#ncontacto").val(),
-                empresa: $("#nempresa").val(),
+                idce: 0,
+                contacto: $("#ncontacto").val()
+            };
+            var dtcld = {
+                idcl: 0,
                 dire: $("#direccion").val(),
-                tel: $('#telefono').val(),
-                ctpat: ctpatc
+                tel: $('#telefono').val()
             };
             var dtcu = {
                 cor: $("#correo").val(),
                 psw: $("#psw").val()
             };
-            $.post('main.php', { dtcl: dtcl, dtcu: dtcu, action: "new" },
+            $.post('main.php', { dtce: dtce, dtcl: dtcl, dtcld: dtcld, dtcu: dtcu, action: "new" },
                 function(e) {
                     if (e.data == true) {
-                        showNotification('Ya puedes iniciar sesion', 'Aviso', 'succes');
                         $('#modalNew').modal('toggle');
+                        showNotification('Ya puedes iniciar sesion', 'Aviso', 'succes');
                     } else {
                         showNotification('Usuario y/o Contraseña', 'incorrectos', 'danger');
                     }
@@ -142,10 +148,10 @@ $(document).ready(function() {
             $.post('main.php', { dt: sendObj, action: "login" },
                 function(e) {
                     if (e.data == true) {
-                        if (e.r['nivel'] == 0) {
-                            window.location.replace("../admin/sservicio");
-                        } else {
+                        if (e.r['nivel'] == 1) {
                             window.location.replace("../admin/control-clientes");
+                        } else {
+                            window.location.replace("../admin/sservicio");
                         }
                     } else {
                         showNotification('Usuario y/o Contraseña', 'Incorrectos', 'danger');

@@ -4,7 +4,7 @@ require_once('pdocnx.php');
 class Clientes extends ConnectionManager{
 
 
-	public function newCliente($dtcl, $dtcu){
+	public function newCliente($dtce, $dtcl, $dtcld, $dtcu){
 		$retval=array('data'=>false,
 			'error'=>false,
 			'r'=>'');
@@ -13,6 +13,13 @@ class Clientes extends ConnectionManager{
 		$dtcu["psw"]=hash('sha256', $dtcu['psw']);
 
 		try{
+			$query="INSERT INTO empresa (Nombre_Empresa, Num_Ctpat) 
+			VALUES (:empresa, :ctpat)";
+			$sth = $cnx->prepare($query);
+			$sth->execute($dtce);
+			$dtcl['idce'] = $cnx->lastInsertId();
+			if($retval['r']=$sth->rowCount()){
+
 			$query="INSERT INTO cuentas (Correo, Psw, Nivel) 
 			VALUES (:cor, :psw, 0)";
 			$sth = $cnx->prepare($query);
@@ -20,12 +27,21 @@ class Clientes extends ConnectionManager{
 			$dtcl['idcu'] = $cnx->lastInsertId();
 			if($retval['r']=$sth->rowCount()){
 			
-			$query="INSERT INTO clientes (ID_Cuenta, Nombre_contacto, Nombre_empresa, Direccion, Telefono, Num_Ctpat) 
-			VALUES (:idcu, :contacto, :empresa, :dire, :tel, :ctpat)";
+			$query="INSERT INTO clientes (ID_Cuenta, ID_Empresa, Nombre_contacto) 
+			VALUES (:idcu, :idce, :contacto)";
 			$sth = $cnx->prepare($query);
 			$sth->execute($dtcl);
-			if($retval['r']=$sth->rowCount())
+			$dtcld['idcl'] = $cnx->lastInsertId();
+			if($retval['r']=$sth->rowCount()){
+				
+				$query="INSERT INTO clientes_detalle (ID_Cliente, Direccion, Telefono) 
+				VALUES (:idcl, :dire, :tel)";
+				$sth = $cnx->prepare($query);
+				$sth->execute($dtcld);
+				if($retval['r']=$sth->rowCount())
 				$retval['data']=true;
+			}
+			}
 			}
 		}
 		catch(PDOException $e){

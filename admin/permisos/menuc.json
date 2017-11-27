@@ -2,20 +2,29 @@
     "sections": [{
         "title": "Menú Principal",
         "menus": [{
-            "title": "Servicios",
-            "icon": "icon-bell",
-            "submenus": [{
-                    "title": "Solicitar Servicios",
-                    "href": "../sservicio/"
-                }, {
-                    "title": "Servicios en Proceso",
-                    "href": "../cupdate-status/"
-                },
-                {
-                    "title": "Historial Servicios",
-                    "href": "../cshistorial/"
-                }
-            ]
-        }]
+                "title": "Servicios",
+                "icon": "icon-bell",
+                "submenus": [{
+                        "title": "Solicitar Servicios",
+                        "href": "../sservicio/"
+                    }, {
+                        "title": "Servicios en Proceso",
+                        "href": "../cupdate-status/"
+                    },
+                    {
+                        "title": "Historial Servicios",
+                        "href": "../cshistorial/"
+                    }
+                ]
+            },
+            {
+                "title": "Usuarios",
+                "icon": "icon-users",
+                "submenus": [{
+                    "title": "Control de Usuarios",
+                    "href": "../control-subclientes/"
+                }]
+            }
+        ]
     }]
 }

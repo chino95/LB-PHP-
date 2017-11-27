@@ -11,7 +11,7 @@ if(isset($_POST['action'])){
 		break;
 		case 'new':
 		$obj =  new Clientes();
-		echo $obj->newCliente($_POST['dtcl'],$_POST['dtcu']);
+		echo $obj->newCliente($_POST['dtce'], $_POST['dtcl'], $_POST['dtcld'], $_POST['dtcu']);
 		break;
 		default:
 		echo "Opción Inválida";

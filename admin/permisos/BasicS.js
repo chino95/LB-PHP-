@@ -21,21 +21,26 @@ function logout() {
 function checkPage(role) {
     var path = window.location.toString().split('/');
     var page = path[path.length - 2];
-    console.log("role: " + role);
-    console.log("path: " + path);
-    console.log("page: " + page);
+    console.log(role);
     switch (page) {
         case 'sservicio':
+            if (role != 0)
+                if (role != 2)
+                    window.location.replace("../../login");
+            break;
+        case 'control-subclientes':
             if (role != 0)
                 window.location.replace("../../login");
             break;
         case 'cupdate-status':
             if (role != 0)
-                window.location.replace("../../login");
+                if (role != 2)
+                    window.location.replace("../../login");
             break;
         case 'cshistorial':
             if (role != 0)
-                window.location.replace("../../login");
+                if (role != 2)
+                    window.location.replace("../../login");
             break;
         case 'control-clientes':
             if (role != 1)

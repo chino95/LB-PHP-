@@ -10,7 +10,9 @@ class Usuarios extends ConnectionManager{
 		$cnx = $this-> connectMysql();
 		$dt['psw'] = hash('sha256', $dt['psw']);
 		$idcliente = 0;
-		$nomcontacto=0;
+		$nomcontacto = 0;
+		$nomemp = 0;
+		$idemp = 0;
 		try{
 			$sth = $cnx->prepare("SELECT ID_Cuenta, Correo, Psw, Nivel FROM cuentas WHERE Correo=:cor AND Psw=:psw");
 			$sth->execute($dt);
@@ -18,21 +20,30 @@ class Usuarios extends ConnectionManager{
 				$idcuenta = $row['ID_Cuenta'];
 				$correo = $row['Correo'];
 				$nivel = $row['Nivel'];
-				if($row['Nivel'] == '0')
-				{
-					$sth = $cnx->prepare("SELECT ID_Cliente, Nombre_contacto FROM clientes WHERE ID_Cuenta = :idc");
-					$sth->bindParam(":idc", $row['ID_Cuenta']);
+				//if($row['Nivel'] == '0')
+				//{
+					$sth = $cnx->prepare("SELECT c.ID_Cliente, c.Nombre_contacto, e.Nombre_Empresa, e.ID_Empresa FROM clientes c 
+					INNER JOIN empresa e ON c.ID_Empresa = e.ID_Empresa WHERE c.ID_Cuenta = :idc");
+					$sth->bindParam(":idc", $idcuenta);
 					$sth->execute();
 					if($row = $sth->fetch(PDO::FETCH_ASSOC)){
 					$idcliente = $row['ID_Cliente'];
-					$nomcontacto = $row['Nombre_contacto'];
-					}
+					$nomcontacto = $row['Nombre_contacto'];	
+					$nomemp = $row['Nombre_Empresa'];
+					$idemp = $row['ID_Empresa'];
+					//}
 				}
 					session_start();
-					$_SESSION['data'] = array('idcuenta'=> $idcuenta, 'correo'=> $correo, 'nivel'=>$nivel, 'idcliente'=> $idcliente, 'nomcont'=>$nomcontacto);
+					$_SESSION['data'] = array(
+					'idcuenta'=> $idcuenta, 
+					'correo'=> $correo, 
+					'nivel'=>$nivel, 
+					'idcliente'=> $idcliente, 
+					'nomcont'=>$nomcontacto, 
+					'idemp'=>$idemp, 
+					'nomemp'=>$nomemp);
 					$retval['data']=true;
 					$retval['r']=$_SESSION['data'];
-				
 			}
 			else{
 				$retval['r']="Usuario o Contraseña Incorrectos";
