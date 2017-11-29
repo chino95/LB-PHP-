@@ -60,11 +60,12 @@ class Mservicio extends ConnectionManager{
 		$retval=array('data'=>false,
 			'error'=>false,
             'r'=>array(),
-			'c'=>array(array('title'=>'ID'),array('title'=>'Cliente'),array('title'=>'Fecha'),array('title'=>'Hora'),array('title'=>'Accion')));
+			'c'=>array(array('title'=>'ID'),array('title'=>'Empresa'),array('title'=>'Fecha'),array('title'=>'Hora'),array('title'=>'Accion')));
 		$cnx = $this-> connectMysql();
 		try{
-			$sth = $cnx->prepare("SELECT s.ID_Servicio, c.Nombre_empresa, s.Fecha, s.Hora FROM sservicio s  
+			$sth = $cnx->prepare("SELECT s.ID_Servicio, e.Nombre_empresa, s.Fecha, s.Hora FROM sservicio s  
 			INNER JOIN clientes c ON s.ID_Cliente = c.ID_Cliente
+			INNER JOIN empresa e ON c.ID_Empresa = e.ID_Empresa
 			WHERE s.status = 'Solicitado'");
 			$sth->execute();
 
@@ -88,8 +89,9 @@ class Mservicio extends ConnectionManager{
 			'r'=>array());
 		$cnx = $this-> connectMysql();
 		try{
-			$sth = $cnx->prepare("SELECT s.ID_Servicio, c.Nombre_empresa, s.Fecha, s.Hora, s.Foraneo, s.Tipo_Carga, s.Origen, s.Destino, s.Peso, s.PesoM, s.Bultos, s.BultosM, s.Comentarios FROM sservicio s  
+			$sth = $cnx->prepare("SELECT s.ID_Servicio, c.Nombre_contacto, e.Nombre_empresa, s.Fecha, s.Hora, s.Foraneo, s.Tipo_Carga, s.Origen, s.Destino, s.Peso, s.PesoM, s.Bultos, s.BultosM, s.Comentarios FROM sservicio s  
 			INNER JOIN clientes c ON s.ID_Cliente = c.ID_Cliente
+			INNER JOIN empresa e ON c.ID_Empresa = e.ID_Empresa
 			WHERE s.ID_Servicio = :id");
 			$sth->bindParam(":id", $id);
 			$sth->execute();
@@ -99,7 +101,7 @@ class Mservicio extends ConnectionManager{
 				
 				$foraneo = $row['Foraneo'] == 1 ?  '<span class="label label-sm label-primary"> Foraneo </span>' : '<span class="label label-sm label-warning"> No Foraneo </span>';
 				array_push($retval['r'],  
-				$row['Nombre_empresa'], 
+				$row['Nombre_contacto'], 
 				$row['Fecha'],
 				$row['Hora'], 
 				$foraneo,

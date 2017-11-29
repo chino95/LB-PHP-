@@ -62,15 +62,18 @@ class Clientes extends ConnectionManager{
 			'c'=>array(array('title'=>'ID'),array('title'=>'Nombre de contacto'),array('title'=>'Nombre de empresa'),array('title'=>'Direccion'),array('title'=>'Telefono'),array('title'=>'CTPAT'),array('title'=>'Accion')));
 		$cnx = $this-> connectMysql();
 		try{
-			$sth = $cnx->prepare("SELECT e.ID_Cliente, e.ID_Cuenta, e.Nombre_contacto, e.Nombre_empresa, e.Direccion, e.Telefono, e.Num_Ctpat FROM clientes e
-			INNER JOIN cuentas c ON e.ID_Cuenta = c.ID_Cuenta");
+			$sth = $cnx->prepare("SELECT c.ID_Cliente, c.ID_Cuenta, c.Nombre_contacto, e.Nombre_Empresa, cd.Direccion, cd.Telefono, e.Num_Ctpat FROM clientes c
+				INNER JOIN clientes_detalle cd ON c.ID_Cliente = cd.ID_Cliente
+				INNER JOIN empresa e ON c.ID_Empresa = e.ID_Empresa
+				INNER JOIN cuentas cu ON c.ID_Cuenta = cu.ID_Cuenta
+			");
 			$sth->execute();
 
 			while($row = $sth->fetch(PDO::FETCH_ASSOC)){
 				$retval['data']=true;
 				$status = $row['Num_Ctpat'] != 0 ?  $row['Num_Ctpat'] : '<span class="label label-sm label-danger"> No cuenta con CTPAT </span>';
 				
-				array_push($retval['r'], array($row['ID_Cliente'], $row['Nombre_contacto'], $row['Nombre_empresa'], $row['Direccion'], $row['Telefono'], $status,
+				array_push($retval['r'], array($row['ID_Cliente'], $row['Nombre_contacto'], $row['Nombre_Empresa'], $row['Direccion'], $row['Telefono'], $status,
 				'<button class="btn btn-embossed btn-primary m-r-20" onclick="MostrarModal('.$row['ID_Cliente'].','.$row['ID_Cuenta'].')">Modificar</button>'));
 			}
 		}

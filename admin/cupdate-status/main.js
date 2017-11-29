@@ -41,7 +41,7 @@ function getServicios() {
         function(e) {
             if (e.data == true) {
                 var cd = [{
-                    targets: [0, 1, 2, 3],
+                    targets: [0, 1, 2],
                     className: "print"
                 }];
                 initTable(e.r, e.c, $("#tbl"), cd);

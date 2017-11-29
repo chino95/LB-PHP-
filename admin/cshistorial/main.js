@@ -82,7 +82,7 @@ function getMservicio() {
         function(e) {
             if (e.data == true) {
                 var cd = [{
-                    targets: [0, 1, 2, 3],
+                    targets: [0, 1, 2, 3, 4],
                     className: "print"
                 }];
                 initTable(e.r, e.c, $("#tbl"), cd);
@@ -103,8 +103,8 @@ function VerServicio(id) {
         },
         function(e) {
             if (e.data == true) {
-                var tabla = '<tr><th>Empresa</th><th>Fecha</th><th>Hora</th><th>Foraneo</th><th>Tipo de Carga</th><th>Origen</th><th>Destino</th><th>Peso</th><th>Bultos</th><th>Comentarios</th></tr>';
-                tabla += '<tr><td>' + e.r[0] + '</td><td>' + e.r[1] + '</td><td>' + e.r[2] + '</td><td>' + e.r[3] + '</td><td>' + e.r[4] + '</td><td>' + e.r[5] + '</td><td>' + e.r[6] + '</td><td>' + e.r[7] + '</td><td>' + e.r[8] + '</td><td>' + e.r[9] + '</td></tr>';
+                var tabla = '<tr><th>Fecha</th><th>Hora</th><th>Foraneo</th><th>Tipo de Carga</th><th>Origen</th><th>Destino</th><th>Peso</th><th>Bultos</th><th>Comentarios</th></tr>';
+                tabla += '<tr><td>' + e.r[0] + '</td><td>' + e.r[1] + '</td><td>' + e.r[2] + '</td><td>' + e.r[3] + '</td><td>' + e.r[4] + '</td><td>' + e.r[5] + '</td><td>' + e.r[6] + '</td><td>' + e.r[7] + '</td><td>' + e.r[8] + '</td></tr>';
                 tabla += '</td></tr>';
                 $('#tablaDetalle').html(tabla);
                 getEmpVeh();
