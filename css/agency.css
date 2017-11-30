@@ -14,7 +14,7 @@ body {
 }
 
 .text-primary {
-    color: #051074;
+    color: #15818d;
 }
 
 p {
@@ -69,12 +69,12 @@ h6 {
 }
 
 .btn-primary {
-    border-color: #009999;
+    border-color: #FFF;
     text-transform: uppercase;
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 700;
     color: #fff;
-    background-color: #009999;
+    background-color: #051074;
 }
 
 .btn-primary:hover,
@@ -378,7 +378,7 @@ section h3.section-subheading {
     width: 100%;
     height: 100%;
     opacity: 0;
-    background: rgba(254, 209, 54, .9);
+    background: rgba(5, 16, 116, .9);
     -webkit-transition: all ease .5s;
     -moz-transition: all ease .5s;
     transition: all ease .5s;
@@ -504,7 +504,7 @@ section h3.section-subheading {
     border-radius: 100%;
     text-align: center;
     color: #fff;
-    background-color: #009999;
+    background-color: #051074;
 }
 
 .timeline>li .timeline-image h4 {
@@ -626,7 +626,7 @@ section h3.section-subheading {
 }
 
 .team-member {
-    border: 1px dotted #009999;
+    border: 1px dotted #051074;
     margin-bottom: 50px;
     text-align: center;
     padding-bottom: 20px;
