@@ -1,6 +1,7 @@
 function runCalendar() {
+    moment.locale('es');
     var $modal = $('#event-modal');
-    $('#external-events div.external-event').each(function () {
+    $('#external-events div.external-event').each(function() {
         // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
         // it doesn't need to have a start or end
         var eventObject = {
@@ -11,8 +12,8 @@ function runCalendar() {
         // make the event draggable using jQuery UI
         $(this).draggable({
             zIndex: 999,
-            revert: true,      // will cause the event to go back to its
-            revertDuration: 0  //  original position after the drag
+            revert: true, // will cause the event to go back to its
+            revertDuration: 0 //  original position after the drag
         });
     });
     /*  Initialize the calendar  */
@@ -25,12 +26,13 @@ function runCalendar() {
 
 
     var calendar = $('#calendar').fullCalendar({
-        slotDuration: '00:15:00', /* If we want to split day time each 15minutes */
+        slotDuration: '00:15:00',
+        /* If we want to split day time each 15minutes */
         minTime: '08:00:00',
-        maxTime: '19:00:00',  
-        defaultView: 'agendaWeek',  
-        handleWindowResize: true,   
-        height: $(window).height() - 200,   
+        maxTime: '19:00:00',
+        defaultView: 'agendaWeek',
+        handleWindowResize: true,
+        height: $(window).height() - 200,
         header: {
             left: 'prev,next today',
             center: 'title',
@@ -53,7 +55,7 @@ function runCalendar() {
         editable: true,
         droppable: true, // this allows things to be dropped onto the calendar !!!
         eventLimit: true, // allow "more" link when too many events
-        drop: function (date) { 
+        drop: function(date) {
             // retrieve the dropped element's stored Event Object
             var originalEventObject = $(this).data('eventObject');
             var $categoryClass = $(this).attr('data-class');
@@ -73,27 +75,27 @@ function runCalendar() {
             }
         },
         selectable: true,
-        eventClick: function (calEvent, jsEvent, view) {
+        eventClick: function(calEvent, jsEvent, view) {
             var form = $("<form></form>");
             form.append("<label>Change event name</label>");
             form.append("<div class='input-group'><input class='form-control' type=text value='" + calEvent.title + "' /><span class='input-group-btn'><button type='submit' class='btn btn-success'><i class='fa fa-check'></i> Save</button></span></div>");
             $modal.modal({
                 backdrop: 'static'
             });
-            $modal.find('.delete-event').show().end().find('.save-event').hide().end().find('.modal-body').empty().prepend(form).end().find('.delete-event').unbind('click').click(function () {
-                calendar.fullCalendar('removeEvents', function (ev) {
+            $modal.find('.delete-event').show().end().find('.save-event').hide().end().find('.modal-body').empty().prepend(form).end().find('.delete-event').unbind('click').click(function() {
+                calendar.fullCalendar('removeEvents', function(ev) {
                     return (ev._id == calEvent._id);
                 });
                 $modal.modal('hide');
             });
-            $modal.find('form').on('submit', function () {
+            $modal.find('form').on('submit', function() {
                 calEvent.title = form.find("input[type=text]").val();
                 calendar.fullCalendar('updateEvent', calEvent);
                 $modal.modal('hide');
                 return false;
             });
         },
-        select: function (start, end, allDay) {
+        select: function(start, end, allDay) {
             $modal.modal({
                 backdrop: 'static'
             });
@@ -108,11 +110,11 @@ function runCalendar() {
                 .append("<option value='bg-purple'>Meeting</option>")
                 .append("<option value='bg-blue'>Lunch</option>")
                 .append("<option value='bg-yellow'>Children</option></div></div>");
-                inputSelect();
-            $modal.find('.delete-event').hide().end().find('.save-event').show().end().find('.modal-body').empty().prepend(form).end().find('.save-event').unbind('click').click(function () {
+            inputSelect();
+            $modal.find('.delete-event').hide().end().find('.save-event').show().end().find('.modal-body').empty().prepend(form).end().find('.save-event').unbind('click').click(function() {
                 form.submit();
             });
-            $modal.find('form').on('submit', function () {
+            $modal.find('form').on('submit', function() {
                 title = form.find("input[name='title']").val();
                 beginning = form.find("input[name='beginning']").val();
                 ending = form.find("input[name='ending']").val();
@@ -120,25 +122,24 @@ function runCalendar() {
                 if (title !== null && title.length != 0) {
                     calendar.fullCalendar('renderEvent', {
                         title: title,
-                        start:start,
+                        start: start,
                         end: end,
                         allDay: false,
                         className: $categoryClass
-                    }, true);  
+                    }, true);
                     $modal.modal('hide');
-                }
-                else{
+                } else {
                     alert('You have to give a title to your event');
                 }
                 return false;
-                
+
             });
             calendar.fullCalendar('unselect');
         }
     });
 
     /* Creation of new category */
-    $('.save-category').on('click', function(){
+    $('.save-category').on('click', function() {
         formCategory = $('#add-category form');
         var categoryName = formCategory.find("input[name='category-name']").val();
         var categoryColor = formCategory.find("select[name='category-color']").val();
@@ -150,6 +151,6 @@ function runCalendar() {
     });
 }
 
-$(function () {
+$(function() {
     runCalendar();
 });
